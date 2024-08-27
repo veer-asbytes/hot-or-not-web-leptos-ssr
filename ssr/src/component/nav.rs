@@ -103,7 +103,8 @@ pub fn NavBar() -> impl IntoView {
             "/upload" => 2,
             "/wallet" | "/transactions" => 3,
             "/menu" => 4,
-            s if s.starts_with("/your-profile") => 4,
+            "/your-profile" => 5,
+            s if s.starts_with("/your-profile") => 5,
             s if s.starts_with("/hot-or-not") => {
                 home_path.set(path);
                 0
@@ -127,6 +128,7 @@ pub fn NavBar() -> impl IntoView {
     };
 
     view! {
+
         <div class=move || {
             format!(
                 "flex flex-row justify-between px-6 py-2 w-full {} fixed left-0 bottom-0 z-50",
@@ -140,16 +142,24 @@ pub fn NavBar() -> impl IntoView {
                 filled_icon=HomeSymbolFilled
                 cur_selected=cur_selected
             />
-            <TrophyIcon idx=1 cur_selected/>
-            <UploadIcon idx=2 cur_selected/>
-            <NavIcon
+             <NavIcon
                 idx=3
-                href="/wallet"
+        href="/wallet"
                 icon=WalletSymbol
                 filled_icon=WalletSymbolFilled
                 cur_selected=cur_selected
             />
+            <UploadIcon idx=2 cur_selected/>
+            <NavIcon
+                idx=1
+                href="/leaderboard"
+                icon=ProfileIcon0
+                filled_icon=ProfileIcon0
+                cur_selected=cur_selected
+            />
             <NavIcon idx=4 href="/menu" icon=MenuSymbol cur_selected=cur_selected/>
         </div>
+
+
     }
 }
