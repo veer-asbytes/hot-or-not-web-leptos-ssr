@@ -74,7 +74,8 @@ jobs:
           cargo clippy --no-deps --all-features --release -- -Dwarnings
 
       - name: Build the Leptos project to `musl` output
-        run: cargo leptos build --release --lib-features release-lib --bin-features release-bin
+        run: |
+             cargo leptos build --release --lib-features release-lib --bin-features release-bin \ --target wasm32-unknown-unknown -Z build-std=std,panic_abort
         env:
           LEPTOS_BIN_TARGET_TRIPLE: x86_64-unknown-linux-musl
           LEPTOS_HASH_FILES: true
